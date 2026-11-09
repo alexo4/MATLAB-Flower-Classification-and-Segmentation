@@ -1,0 +1,6 @@
+17flowers/
+daffodilSeg/
+*.mat
+*.asv
+slprj/
+.DS_Store
