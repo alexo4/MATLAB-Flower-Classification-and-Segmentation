@@ -4,6 +4,8 @@ A small CNN built from three stacked **inception modules**, used for both image 
 
 ![Network architecture](docs/network_architecture.jpeg)
 
+*Classification network as drawn in MATLAB: input, stem layers, three inception modules (each followed by max pooling) and the classification head.*
+
 ## Results
 
 | Task | Metric | Result |
@@ -36,7 +38,7 @@ The larger-channel model is slightly better, but with a 136-image test set one i
 - **The errors are between look-alike flowers.** 10 of the 17 classes have at least 6 of 8 test images correct. Class 1 has none, and its images are mostly labelled as class 8, another yellow flower with the same number of petals. Colour and shape are too similar for this small network.
 - **Early layers hurt segmentation.** The classification network starts with a 7x7 convolution, a 3x3 convolution, max pooling and batch norm. For segmentation, removing the 3x3 convolution and the pooling and batch norm after it gave tighter boundaries, because the downsampling threw away spatial detail on a small dataset.
 
-![Segmentation with and without the early layers](docs/segmentation_early_layers.png)
+![Segmentation with and without the early layers](docs/segmentation_early_layers.jpeg)
 
 *Example output with (left) and without (right) the early 3x3 convolution, pooling and batch norm layers. Flower image from the [Oxford 17 Flowers dataset](https://www.robots.ox.ac.uk/~vgg/data/flowers/17/).*
 
@@ -48,6 +50,8 @@ The larger-channel model is slightly better, but with a 136-image test set one i
 
 - **Classification head:** batch norm, global average pooling, 50% dropout, a fully connected layer of 17 units and softmax.
 - **Segmentation head:** transposed convolutions with stride 2 and ReLU between them, which upsample back to the input size, then softmax and a pixel classification layer.
+
+![Segmentation upsampling and output layers](docs/segmentation_head.jpeg)
 
 **Training.** Both tasks use SGD with momentum, because Adam predicted every pixel as background in the segmentation model.
 
