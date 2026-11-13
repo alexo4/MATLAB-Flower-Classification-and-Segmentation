@@ -2,7 +2,7 @@
 
 A small CNN built from three stacked **inception modules**, used for both image classification and segmentation on the Oxford 17 Flowers dataset. I wanted to find out whether inception modules give good accuracy in a small, simple network, instead of relying on a large pretrained one.
 
-![Network architecture](docs/network_architecture.png)
+![Network architecture](docs/network_architecture.jpeg)
 
 ## Results
 
